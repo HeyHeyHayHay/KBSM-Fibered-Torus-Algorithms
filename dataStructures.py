@@ -104,6 +104,9 @@ class Word:
                     list.append(XcCurveList)
         return list
 
+    def multiplyCoefficient(self, coefficient):
+        self.coefficient = sympy.expand(self.coefficient * coefficient)
+        return self
 
 class LinearCombination:
     def __init__(self, listOfWords):
@@ -152,27 +155,35 @@ class LinearCombination:
     def addWord(self, word):
         self.wordDict[word.letterTuple] = sympy.expand(self.wordDict.get(word.letterTuple, 0) + word.coefficient)
         self.removeZeros()
-        pass
+        return self
 
     def subtractWord(self, word):
         self.wordDict[word.letterTuple] = sympy.expand(self.wordDict.get(word.letterTuple, 0) - word.coefficient)
         self.removeZeros()
-        pass
+        return self
 
     def addLinearCombination(self, linearCombinationAddend):
+        if (len(linearCombinationAddend) == 0):
+            return self
         for word in linearCombinationAddend:
             currentWord = Word(word, linearCombinationAddend.wordDict[word])
             self.addWord(currentWord)
-            pass
+        return self
 
     def subtractLinearCombination(self, linearCombinationSubtrahend):
         for word in linearCombinationSubtrahend:
             currentWord = Word(word, linearCombinationSubtrahend.wordDict[word])
             self.subtractWord(currentWord)
-            pass
+        return self
 
     def popWord(self, word):
         return self.wordDict.pop(word.letterTuple)
+
+    def multiplyCoefficient(self, coefficient):
+        for word in self.wordDict:
+            self.wordDict[word] = sympy.expand(self.wordDict[word] * coefficient)
+        self.removeZeros()
+        return self
 
 #
 def XcFormToWord(XcForm, coefficient):
@@ -189,6 +200,9 @@ def XcFormToWord(XcForm, coefficient):
 
     for i in range(2, len(XcForm)):
         letterList.append(XcForm[i])
+
+    if (len(letterList)%2 == 0):
+        letterList.append(0)
 
     letterTuple = tuple(letterList)
 

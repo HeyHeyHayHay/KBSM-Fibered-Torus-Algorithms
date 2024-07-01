@@ -1,4 +1,5 @@
 
+import dataStructures
 from dataStructures import Word
 from dataStructures import LinearCombination
 from dataStructures import XcFormToWord
@@ -7,6 +8,8 @@ import basisClassification
 import comparingWords
 import algorithm0
 from algorithmGeneral import algorithmGeneral
+import moves
+import polyPQ
 
 A = sympy.symbols('A')
 lambda_ = sympy.symbols('lambda')
@@ -56,9 +59,32 @@ c = 4
 testXcForm1 = [c, "k", "m >= -4", 4, 0, 5, 0]
 testXcForm2 = [c, "k", "w"]
 
-word99 = Word((0, 4, 0, 4, 0, 4, 0, 4, 1, 2), 1)
+word99 = Word((0, 4, 0, 4, 0, 4, 0, 4, 1, 4, 2), 1)
+word100 = Word((0, 4, 0, 4, 0, 4, 0, 4, 1, 4), 1)
+word101 = Word((0, -5, 0, 4, 0), 1)
 
-print(word99)
-print(algorithm0.part7(c, word99))
 
-print(algorithmGeneral(c, 0, algorithm0.part7, LinearCombination([word99])))
+t = LinearCombination([word99, word100, word101])
+testCombination = LinearCombination([word26])
+
+print(testCombination)
+
+#print("single move test", algorithm0.part5(c, word99))
+
+print(algorithmGeneral(c, 0, algorithm0.algorithm0, testCombination))
+
+#print(testCombination)
+
+print(testCombination.multiplyCoefficient(0))
+
+print(testCombination)
+"""
+print("_________________")
+print(LinearCombination([]))
+print(type(LinearCombination([])))
+
+print("test reduce3")
+print(word101)
+print("Word above")
+print(moves.lambdaReduce3(word101.XcCurveForm(4), 4, word101.coefficient))
+"""

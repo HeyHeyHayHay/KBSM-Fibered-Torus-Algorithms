@@ -1,36 +1,69 @@
 
 import sympy
+from dataStructures import XcFormToWord
+from dataStructures import LinearCombination
 
 A = sympy.symbols('A')
 lambda_ = sympy.symbols('lambda')
 
-def Pnk_Recursion(n, k):
+def Pnk_Recursion(n, k, XcForm, lambdaIndexPosition, startCoefficient):
     # n integer, k natural number
 
     if (k == 0):
-        return PnWithQ(n)
+        return PnWithQ(n, XcForm, lambdaIndexPosition, startCoefficient)
     else:
-        PnkRecursionEquation = sympy.expand(A*Pnk_Recursion(n+1, k-1) + (A**-1)*Pnk_Recursion(n-1, k-1))
-        return PnkRecursionEquation
 
-def Qn_Recursion(n):
+        firstCombination = Pnk_Recursion(n + 1, k - 1, XcForm, lambdaIndexPosition, startCoefficient)
+        secondCombination = Pnk_Recursion(n - 1, k - 1, XcForm, lambdaIndexPosition, startCoefficient)
+
+        firstCombination.multiplyCoefficient(A)
+        secondCombination.multiplyCoefficient(A**-1)
+
+        PnkRecursionCombination = firstCombination.addLinearCombination(secondCombination)
+        return PnkRecursionCombination
+
+def Qn_Recursion(n, XcForm, lambdaIndexPosition, startCoefficient):
     # n integer
+
     if (n < 0):
-        antisymmetricEquation = sympy.expand(-1*Qn_Recursion(-n))
-        return antisymmetricEquation
+        antisymmetricCombination = Qn_Recursion(-n, XcForm, lambdaIndexPosition, startCoefficient)
+        antisymmetricCombination.multiplyCoefficient(-1)
+        return antisymmetricCombination
 
     if (n == 0):
-        return 0
+
+        return LinearCombination([])
     elif (n == 1):
-        return 1
+        word = XcFormToWord(XcForm, startCoefficient)
+        combo = LinearCombination([word])
+        return combo
     else:
-        recursionEquation = sympy.expand(lambda_*Qn_Recursion(n-1) - Qn_Recursion(n-2))
-        return recursionEquation
 
-def PnWithQ(n):
+        firstXcForm = list(XcForm)
+        secondXcForm = list(XcForm)
+
+        firstXcForm[lambdaIndexPosition] = firstXcForm[lambdaIndexPosition] + 1
+
+        firstCombination = Qn_Recursion(n - 1, firstXcForm, lambdaIndexPosition, startCoefficient)
+        secondCombination = Qn_Recursion(n - 2, secondXcForm, lambdaIndexPosition, startCoefficient)
+
+        secondCombination.multiplyCoefficient(-1)
+
+        QnrecursionCombination = firstCombination.addLinearCombination(secondCombination)
+
+        return QnrecursionCombination
+
+def PnWithQ(n, XcForm, lambdaIndexPosition, startCoefficient):
     # n integer
-    PQrecursionEquation = sympy.expand(-A**(n+2)*Qn_Recursion(n+1) + A**(n-2)*Qn_Recursion(n-1))
-    return PQrecursionEquation
 
-print(PnWithQ(-2))
-print(Pnk_Recursion(1, 2))
+
+    firstCombination = Qn_Recursion(n + 1, XcForm, lambdaIndexPosition, startCoefficient)
+    secondCombination = Qn_Recursion(n - 1, XcForm, lambdaIndexPosition, startCoefficient)
+
+    firstCombination.multiplyCoefficient(-A**(n+2))
+    secondCombination.multiplyCoefficient(A**(n-2))
+
+    PQrecursionCombination = firstCombination.addLinearCombination(secondCombination)
+    #PQrecursionCombination = secondCombination.addLinearCombination(firstCombination)
+
+    return PQrecursionCombination
