@@ -2,12 +2,21 @@
 from dataStructures import LinearCombination
 from dataStructures import Word
 from basisClassification import isBasis
+from comparingWords import testWord
+import moves
+
 
 def algorithmGeneral(c, basisNumber, algorithmFunction, linearCombination):
 
     basisCombination = LinearCombination([])
 
+    i = -1
+
     while (len(linearCombination) > 0):
+
+        i += 1
+        if (i%2 == 0):
+            print("Step {} Length {} Combination {}".format(i, len(linearCombination), linearCombination))
 
         combinationToSubract = LinearCombination([])
         for word in linearCombination:
@@ -37,3 +46,17 @@ def algorithmGeneral(c, basisNumber, algorithmFunction, linearCombination):
 
         # if basis add to new linearcombination of basis
         # if not basis add back into linearCombination
+
+
+def algorithmMatchAndMove(c, word, moveFunction, formMatch, position):
+
+    XcForm = testWord(formMatch, word)
+
+    if (XcForm == False):
+        return False
+
+    wordStartCoefficient = word.coefficient
+
+    linearCombination = moveFunction(XcForm, position, wordStartCoefficient)
+
+    return linearCombination

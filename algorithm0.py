@@ -4,6 +4,7 @@ from dataStructures import XcFormToWord
 from dataStructures import LinearCombination
 import sympy
 import moves
+from algorithmGeneral import algorithmMatchAndMove
 
 A = sympy.symbols('A')
 lambda_ = sympy.symbols('lambda')
@@ -13,26 +14,14 @@ lambda_ = sympy.symbols('lambda')
 
 def algorithm0(c, word):
 
-    if (part1(c, word) != False):
-        return part1(c, word)
+    listOfPartFunctions = [part1, part2, part3, part4, part5, part6, part7]
 
-    if (part2(c, word) != False):
-        return part2(c, word)
+    for part in listOfPartFunctions:
 
-    if (part3(c, word) != False):
-        return part3(c, word)
+        match = part(c, word)
 
-    if (part4(c, word) != False):
-        return part4(c, word)
-
-    if (part5(c, word) != False):
-        return part5(c, word)
-
-    if (part6(c, word) != False):
-        return part6(c, word)
-
-    if (part7(c, word) != False):
-        return part7(c, word)
+        if (match != False):
+            return match
 
     raise Exception("Word {} found no match".format(word))
     return False
@@ -41,133 +30,42 @@ def algorithm0(c, word):
 
 def part1(c, word):
 
-    if (testPart1(c, word) == False):
-        return False
-
-    wordStartCoefficient = word.coefficient
-
-    part1XcForm = testPart1(c, word)
-
-    linearCombination = moves.lambdaLeftMinus(part1XcForm, 2, wordStartCoefficient)
-
-    return linearCombination
-
-def testPart1(c, word):
-
     formPart1 = [c, "k", "n >= 1", "m", "w", "w"]
 
-    return testWord(formPart1, word)
+    return algorithmMatchAndMove(c, word, moves.lambdaLeftMinus, formPart1, 2)
 
 def part2(c, word):
 
-    if (testPart2(c, word) == False):
-        return False
-
-    wordStartCoefficient = word.coefficient
-
-    part2XcForm = testPart2(c, word)
-
-    linearCombination = moves.xLeftMinus(part2XcForm, 3, wordStartCoefficient)
-
-    return linearCombination
-
-def testPart2(c, word):
-
     formPart2 = [c, "k", 0, "m > c + 1", "w", "w"]
 
-    return testWord(formPart2, word)
+    return algorithmMatchAndMove(c, word, moves.xLeftMinus, formPart2, 3)
 
 def part3(c, word):
 
-    if (testPart3(c, word) == False):
-        return False
-
-    wordStartCoefficient = word.coefficient
-
-    part3XcForm = testPart3(c, word)
-
-    linearCombination = moves.xLeftPlus(part3XcForm, 3, wordStartCoefficient)
-
-    return linearCombination
-
-def testPart3(c, word):
-
     formPart3 = [c, "k", 0, "m < c", "w", "w"]
 
-    return testWord(formPart3, word)
+    return algorithmMatchAndMove(c, word, moves.xLeftPlus, formPart3, 3)
 
 def part4(c, word):
 
-    if (testPart4(c, word) == False):
-        return False
-
-    wordStartCoefficient = word.coefficient
-
-    part4XcForm = testPart4(c, word)
-
-    linearCombination = moves.lambdaReduce3(part4XcForm, 4, wordStartCoefficient)
-
-    return linearCombination
-
-def testPart4(c, word):
-
     formPart4 = [c, "k", 0, c + 1, "n", "m", "w"]
 
-    return testWord(formPart4, word)
+    return algorithmMatchAndMove(c, word, moves.lambdaReduce3, formPart4, 4)
 
 def part5(c, word):
 
-    if (testPart5(c, word) == False):
-        return False
-
-    wordStartCoefficient = word.coefficient
-
-    part5XcForm = testPart5(c, word)
-
-    linearCombination = moves.lambdaRightMinus(part5XcForm, 4, wordStartCoefficient)
-
-    return linearCombination
-
-def testPart5(c, word):
-
     formPart5 = [c, "k", "n", "m", "n >= 1"]
 
-    return testWord(formPart5, word)
+    return algorithmMatchAndMove(c, word, moves.lambdaRightMinus, formPart5, 4)
 
 def part6(c, word):
 
-    if (testPart6(c, word) == False):
-        return False
-
-    wordStartCoefficient = word.coefficient
-
-    part6XcForm = testPart6(c, word)
-
-    linearCombination = moves.xRightMinus(part6XcForm, 3, wordStartCoefficient)
-
-    return linearCombination
-
-def testPart6(c, word):
-
     formPart6 = [c, "k", "n", "m > c + 1", 0]
 
-    return testWord(formPart6, word)
+    return algorithmMatchAndMove(c, word, moves.xRightMinus, formPart6, 3)
 
 def part7(c, word):
 
-    if (testPart7(c, word) == False):
-        return False
-
-    wordStartCoefficient = word.coefficient
-
-    part7XcForm = testPart7(c, word)
-
-    linearCombination = moves.xRightPlus(part7XcForm, 3, wordStartCoefficient)
-
-    return linearCombination
-
-def testPart7(c, word):
-
     formPart7 = [c, "k", "n", "m < c", 0]
 
-    return testWord(formPart7, word)
+    return algorithmMatchAndMove(c, word, moves.xRightPlus, formPart7, 3)
