@@ -15,8 +15,8 @@ def algorithmGeneral(c, basisNumber, algorithmFunction, linearCombination):
     while (len(linearCombination) > 0):
 
         i += 1
-        if (i%2 == 0):
-            print("Step {} Length {} Combination {}".format(i, len(linearCombination), linearCombination))
+        if (i%4 == 0):
+            print(" Step {} Length {} \n{} Step {} Length {}\n".format(i, len(linearCombination), linearCombination, i, len(linearCombination)))
 
         combinationToSubract = LinearCombination([])
         for word in linearCombination:

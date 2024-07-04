@@ -32,7 +32,7 @@ word24 = Word((0, 4, 0, 4, 0, 4, 0, 4, 1, 5), 4*A)
 word25 = Word((0, 4, 0, 4, 0, 4, 1, 4, 1, 5), 4*A)
 word26 = Word((0, 4, 0, 4, 0, 4, 1, 4, 0, 5), 4*A)
 word27 = Word((0, 4, 0, 4, 0, 4, 0, 5, 0, 5, 1), 4*A)
-word28 = Word((0, 4, 0, 4, 1, 4, 0), 1)
+word28 = Word((0, 4, 0, 5, 1, 4, 1), 1)
 
 word20 = Word((10, 5, 0, 4, 0), 4*A)
 word21 = Word((10, 5, 0, 5, 0), 4*A)
@@ -72,20 +72,18 @@ word101 = Word((0, 4, 0, 4, 2, 3 , 1), 1)
 
 
 t = LinearCombination([word99, word100, word101])
-testCombination = LinearCombination([word27])
+testCombination = LinearCombination([word28])
 print("_________________")
 
 print(testCombination)
 
 #print("single move test", algorithm0.part5(c, word99))
 
-print(algorithmGeneral(c, 1, algorithm1.algorithm1, testCombination))
+
+print(algorithmGeneral(c, 0, algorithm0.algorithm0, testCombination))
 
 #print(testCombination)
 
-print(testCombination.multiplyCoefficient(0))
-
-print(testCombination)
 """
 print("_________________")
 print(LinearCombination([]))

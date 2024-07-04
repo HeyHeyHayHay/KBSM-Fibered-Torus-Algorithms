@@ -1,10 +1,14 @@
 
 import sympy
 import fancyPrinting as fp
+from colorama import Fore, Style, init
 import math
+
 
 A = sympy.symbols('A')
 lambda_ = sympy.symbols('lambda')
+
+init(autoreset=True)
 
 class Word:
     def __init__(self, letterTuple, coefficient):
@@ -34,7 +38,7 @@ class Word:
                 if (i%2 == 1):
                     wordString = fp.fancy_x_unicode + fp.to_subscript(array[i]) + wordString
 
-        return f"({self.coefficient}) "+wordString
+        return f"{Fore.RED}({self.coefficient}) {Fore.WHITE}{wordString}"
 
     def numOfXCurves(self):
         return math.floor( len(self.letterTuple) / 2 )
@@ -132,9 +136,10 @@ class LinearCombination:
         for word in self.wordDict:
             currentWord = Word(word, self.wordDict[word])
             if (i == 0):
-                linearCombinationString = linearCombinationString + str(currentWord)
+                linearCombinationString = linearCombinationString + "   " + str(currentWord)
             else:
                 linearCombinationString = linearCombinationString + " + " + str(currentWord)
+            linearCombinationString += "\n"
             i += 1
 
         return linearCombinationString
