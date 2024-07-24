@@ -33,11 +33,13 @@ def Qn_Recursion(n, XcForm, lambdaIndexPosition, startCoefficient):
     if (n == 0):
 
         return LinearCombination([])
-    elif (n == 1):
+
+    if (n == 1):
         word = XcFormToWord(XcForm, startCoefficient)
         combo = LinearCombination([word])
         return combo
-    else:
+
+    if (n > 1):
 
         firstXcForm = list(XcForm)
         secondXcForm = list(XcForm)
@@ -52,6 +54,9 @@ def Qn_Recursion(n, XcForm, lambdaIndexPosition, startCoefficient):
         QnrecursionCombination = firstCombination.addLinearCombination(secondCombination)
 
         return QnrecursionCombination
+
+    raise Exception("n is not a real number")
+    return False
 
 def PnWithQ(n, XcForm, lambdaIndexPosition, startCoefficient):
     # n integer

@@ -162,10 +162,12 @@ def lambdaReduce3(XcForm, indexToChange, startCoefficient):
 
     firstXcForm.pop(indexToChange + 1)
     centerLambda = firstXcForm.pop(indexToChange)
-    rightLambda = firstXcForm.pop(indexToChange - 2)
+    rightLambda = firstXcForm.pop(indexToChange)
 
     newLambda = centerLambda + rightLambda + 1
     firstXcForm[indexToChange - 2] = newLambda
+
+    firstXcForm.pop(indexToChange - 1)
 
     firstCoefficient = sympy.expand((-A**-1)*startCoefficient)
 
@@ -175,10 +177,12 @@ def lambdaReduce3(XcForm, indexToChange, startCoefficient):
 
     secondXcForm.pop(indexToChange + 1)
     centerLambda = secondXcForm.pop(indexToChange)
-    rightLambda = secondXcForm.pop(indexToChange - 2)
+    rightLambda = secondXcForm.pop(indexToChange)
 
     newLambda = centerLambda + rightLambda
     secondXcForm[indexToChange - 2] = newLambda
+
+    secondXcForm.pop(indexToChange - 1)
 
     secondCoefficient = sympy.expand(2*startCoefficient)
 
@@ -194,5 +198,7 @@ def lambdaReduce3(XcForm, indexToChange, startCoefficient):
     thirdWord = XcFormToWord(thirdXcForm, thirdCoefficient)
 
     linearCombination = firstLinearCombination.addLinearCombination(secondLinearCombination.addWord(thirdWord))
+
+    #print("move4", XcForm, firstXcForm, secondXcForm, thirdXcForm)
 
     return linearCombination

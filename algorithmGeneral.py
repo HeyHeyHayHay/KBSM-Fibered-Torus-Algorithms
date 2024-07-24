@@ -3,6 +3,7 @@ from dataStructures import LinearCombination
 from dataStructures import Word
 from basisClassification import isBasis
 from comparingWords import testWord
+import sympy
 import moves
 
 
@@ -10,13 +11,9 @@ def algorithmGeneral(c, basisNumber, algorithmFunction, linearCombination):
 
     basisCombination = LinearCombination([])
 
-    i = -1
+    i = 1
 
     while (len(linearCombination) > 0):
-
-        i += 1
-        if (i%4 == 0):
-            print(" Step {} Length {} \n{} Step {} Length {}\n".format(i, len(linearCombination), linearCombination, i, len(linearCombination)))
 
         combinationToSubract = LinearCombination([])
         for word in linearCombination:
@@ -34,10 +31,25 @@ def algorithmGeneral(c, basisNumber, algorithmFunction, linearCombination):
             currentWord = Word(word, linearCombination.wordDict[word])
 
             changes = algorithmFunction(c, currentWord)
+            #print("start:", currentWord, "change:", changes)
             newLinearCombination.addLinearCombination(changes)
+
+        length = len(linearCombination)
+        basisWords = len(basisCombination)
 
         linearCombination = LinearCombination([])
         linearCombination.addLinearCombination(newLinearCombination)
+
+        print("Next Step")
+        if (i%5 == 0):
+            print(" Step {} Length {} Basis Words {} \n{} Step {} Length {} Basis Words {} \n".format(i, length, basisWords, linearCombination, i, length, basisWords))
+
+        i += 1
+
+    # factor polynomials
+
+    for word in basisCombination:
+        basisCombination.wordDict[word] = sympy.factor(basisCombination.wordDict[word])
 
     return basisCombination
 

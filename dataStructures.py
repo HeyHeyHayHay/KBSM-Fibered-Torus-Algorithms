@@ -20,7 +20,7 @@ class Word:
             letterTuple = tuple(letterList)
 
         self.letterTuple = letterTuple
-        self.coefficient = coefficient
+        self.coefficient = sympy.expand(coefficient)
 
     def __str__(self):
 

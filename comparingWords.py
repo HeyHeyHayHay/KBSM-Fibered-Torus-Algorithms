@@ -10,6 +10,7 @@ def testWord(testXcForm, word):
     allPossibleXcForms = word.listAllXcCurveForms(c)
 
     for form in allPossibleXcForms:
+        #print(form, testXcForm)
         if (testThisXcForm(testXcForm, form) == True):
             return form
 
@@ -18,6 +19,24 @@ def testWord(testXcForm, word):
 def testThisXcForm(testXcForm, XcForm):
 
     match = True
+
+    # w adjustment
+
+    lastEntry = str(testXcForm[-1])
+
+    if ( len(lastEntry) > 1 ):
+        if ( "w" in lastEntry ):
+            string = testXcForm.pop(-1)
+
+            string = string.replace("w", '')
+
+            numberOfX = int(string)
+
+            numberOfW = 2*numberOfX + 1
+
+            for i in range(numberOfW):
+                testXcForm.append("w")
+
 
     # length Test
 

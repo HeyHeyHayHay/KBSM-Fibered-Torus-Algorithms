@@ -10,13 +10,13 @@ def Pnk_Recursion(n, k):
     if (k == 0):
         return PnWithQ(n)
     else:
-        PnkRecursionEquation = sympy.expand(A*Pnk_Recursion(n+1, k-1) + (A**-1)*Pnk_Recursion(n-1, k-1))
+        PnkRecursionEquation = sympy.factor(A*Pnk_Recursion(n+1, k-1) + (A**-1)*Pnk_Recursion(n-1, k-1))
         return PnkRecursionEquation
 
 def Qn_Recursion(n):
     # n integer
     if (n < 0):
-        antisymmetricEquation = sympy.expand(-1*Qn_Recursion(-n))
+        antisymmetricEquation = sympy.factor(-1*Qn_Recursion(-n))
         return antisymmetricEquation
 
     if (n == 0):
@@ -24,12 +24,12 @@ def Qn_Recursion(n):
     elif (n == 1):
         return 1
     else:
-        recursionEquation = sympy.expand(lambda_*Qn_Recursion(n-1) - Qn_Recursion(n-2))
+        recursionEquation = sympy.factor(lambda_*Qn_Recursion(n-1) - Qn_Recursion(n-2))
         return recursionEquation
 
 def PnWithQ(n):
     # n integer
-    PQrecursionEquation = sympy.expand(-A**(n+2)*Qn_Recursion(n+1) + A**(n-2)*Qn_Recursion(n-1))
+    PQrecursionEquation = sympy.factor(-A**(n+2)*Qn_Recursion(n+1) + A**(n-2)*Qn_Recursion(n-1))
     return PQrecursionEquation
 
 print(PnWithQ(-2))

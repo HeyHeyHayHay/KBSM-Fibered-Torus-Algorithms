@@ -8,6 +8,9 @@ import basisClassification
 import comparingWords
 import algorithm0
 import algorithm1
+import basisConversionAlgorithm
+from basisClassification import isBasis
+import basisClassification
 
 from algorithmGeneral import algorithmGeneral
 import moves
@@ -18,7 +21,7 @@ lambda_ = sympy.symbols('lambda')
 
 # Testing Values
 
-word1 = Word((0, 4, 0, 4, 0, 4, 0, 222, 14, -1, 4, 0, 0, 0, 0, 0), A**2 - A**-1)
+word1 = Word((0, 4, 0, 4, 1, 4, 0, 2, 1, -1, 4, 0, 0), 1)
 word2 = Word((0, 4, 0), 2*A)
 word4 = Word((0, 4, 1), 4*A)
 word5 = Word((10), 2*A)
@@ -35,30 +38,11 @@ word27 = Word((0, 4, 0, 4, 0, 4, 0, 5, 0, 5, 1), 4*A)
 word28 = Word((0, 4, 0, 5, 1, 4, 1), 1)
 
 word20 = Word((10, 5, 0, 4, 0), 4*A)
-word21 = Word((10, 5, 0, 5, 0), 4*A)
+word21 = Word((0, 4, 0, 3, 2, 5), 4*A)
 
 
 
 combo = LinearCombination([word1, word2, word4, word5, word6, word7, word8, word9, word19, word20, word21, word22, word24, word25, word26])
-#print(combo)
-"""
-i = 0
-for word in combo:
-    currentWord = Word(word, combo.wordDict[word])
-    print(currentWord)
-    basis = basisClassification.isBasis(currentWord, 2, 4)
-
-    exampleC = False
-    for possibleXForm in currentWord.listAllXcCurveForms(4):
-        CForm = [4, "k", "n", "m < 4", 0]
-        exampleC = exampleC or comparingWords.testXcForm(CForm, currentWord.XcCurveForm(4))
-        print(possibleXForm)
-    print(exampleC)
-
-    print(basis)
-
-print(word4)
-"""
 
 #basis = basisClassification.isBasis(word4, 0, 4)
 
@@ -67,30 +51,53 @@ testXcForm1 = [c, "k", "m >= -4", 4, 0, 5, 0]
 testXcForm2 = [c, "k", "w"]
 
 word99 = Word((0, 4, 0, 4, 0, 4, 0, 4, 1, 4, 2), 1)
-word100 = Word((0, 4, 0, 4, 0, 4, 0, 4, 1, 4), 1)
-word101 = Word((0, 4, 0, 4, 2, 3 , 1), 1)
+word100 = Word((0, 4, 0, 4, 1, 4, 0), 1)
+word101 = Word((0, 4, 0, 4, 2, 5, 0), 1)
 
 
-t = LinearCombination([word99, word100, word101])
-testCombination = LinearCombination([word28])
+t = LinearCombination([word100, word101])
+testCombination = LinearCombination([word100, word101])
 print("_________________")
 
 print(testCombination)
 
-#print("single move test", algorithm0.part5(c, word99))
 
 
-print(algorithmGeneral(c, 0, algorithm0.algorithm0, testCombination))
+basis0test = algorithmGeneral(c, 0, algorithm0.algorithm0, testCombination)
+testCombination = LinearCombination([word100, word101])
 
-#print(testCombination)
+basis1Direct = algorithmGeneral(c, 1, algorithm1.algorithm1, testCombination)
+
+print("basis0", basis0test)
+print("basis1", basis1Direct)
+
+print("____TRANSFeR_____")
+
+basisTransferAlgorithmTest = basisConversionAlgorithm.createBasisAlgorithm(1)
+
+basis1Transfer = algorithmGeneral(c, 1, basisTransferAlgorithmTest, basis0test)
 
 """
-print("_________________")
-print(LinearCombination([]))
-print(type(LinearCombination([])))
-
-print("test reduce3")
-print(word101)
-print("Word above")
-print(moves.lambdaReduce3(word101.XcCurveForm(4), 4, word101.coefficient))
+print(basis0test)
+print(basis1Direct)
+print(basis1Transfer)
 """
+
+
+print(basis1Transfer)
+
+print("____TRANSFeR 2_____")
+
+basisTransferAlgorithmTest2 = basisConversionAlgorithm.createBasisAlgorithm(2)
+
+basis2Transfer = algorithmGeneral(c, 2, basisTransferAlgorithmTest2, basis1Transfer)
+
+print(basis2Transfer)
+
+print("____TRANSFeR 2_____")
+
+basisTransferAlgorithmTest3 = basisConversionAlgorithm.createBasisAlgorithm(3)
+
+basis3Transfer = algorithmGeneral(c, 3, basisTransferAlgorithmTest3, basis2Transfer)
+
+print(basis3Transfer)

@@ -36,11 +36,12 @@ def isBasisZeroXcCurve(word, basisNumber, c):
 def listAfterLambdaZeroXcCurveForms(basisNumber, c):
     listOfForms = []
 
-    baseFormC = [c, 0, "n", c, 0]
-    baseFormCPlus = [c, 0, "n", c+1, 0]
-
     for i in range(basisNumber):
         afterLambdaLength = (i)*2
+
+        baseFormC = [c, 0, "n", c, 0]
+        baseFormCPlus = [c, 0, "n", c+1, 0]
+
         for k in range(afterLambdaLength):
             if (k%2 == 0):
                 baseFormC = baseFormC + [c+1]
