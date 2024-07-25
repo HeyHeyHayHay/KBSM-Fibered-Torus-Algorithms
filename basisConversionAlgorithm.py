@@ -34,32 +34,32 @@ def createBasisAlgorithm(destinationBasisNumber):
 
     def part1(c, word):
         #print(1)
-        formPart1 = [c, "k", 0, "m", "n >= 1", c + 1, f"{destinationBasisNumber - 1}w"]
+        formPart1 = [c, "k", 0, "m", "n >= 1", c + 1, 0, f"{destinationBasisNumber - 1}w"]
         return algorithmMatchAndMove(c, word, moves.lambdaRightMinus, formPart1, 4)
 
     def part2(c, word):
         #print(2)
 
-        formPart2 = [c, "k", "n", "m > c + 1", 0, c + 1, f"{destinationBasisNumber - 1}w"]
+        formPart2 = [c, "k", "n", "m > c + 1", 0, c + 1, 0, f"{destinationBasisNumber - 1}w"]
         return algorithmMatchAndMove(c, word, moves.xRightMinus, formPart2, 3)
 
     def part3(c, word):
         #print(3)
 
-        formPart3 = [c, "k", "n", "m < c", 0, c + 1, f"{destinationBasisNumber - 1}w"]
+        formPart3 = [c, "k", "n", "m < c", 0, c + 1, 0, f"{destinationBasisNumber - 1}w"]
         return algorithmMatchAndMove(c, word, moves.xRightPlus, formPart3, 3)
 
     def part4(c, word):
-        #print(4)
+        print(4)
 
 
-        formPart4 = [c, "k", 0, c, "n", c, f"{destinationBasisNumber - 1}w"]
+        formPart4 = [c, "k", 0, c, "n", c, 0, f"{destinationBasisNumber - 1}w"]
         return algorithmMatchAndMove(c, word, moves.lambdaReduce3, formPart4, 4)
 
     # _____________________________________________________________
 
     def part5(c, word):
-        #print(5)
+        print(5)
 
         formPart5 = [c, "k", 0, "m", "n >= 1", c + 1, "w"]
         return algorithmMatchAndMove(c, word, moves.lambdaRightMinus, formPart5, 4)
@@ -85,13 +85,13 @@ def createBasisAlgorithm(destinationBasisNumber):
     def part9(c, word):
         #print(9)
 
-        formPart9 = [c, "k", 0, "m > c + 1", 0]
+        formPart9 = [c, "k", "n", "m > c + 1", 0]
         return algorithmMatchAndMove(c, word, moves.xRightMinus, formPart9, 3)
 
     def part10(c, word):
         #print(10)
 
-        formPart10 = [c, "k", 0, "m < c", 0]
+        formPart10 = [c, "k", "n", "m < c", 0]
         return algorithmMatchAndMove(c, word, moves.xRightPlus, formPart10, 3)
 
     def part11(c, word):

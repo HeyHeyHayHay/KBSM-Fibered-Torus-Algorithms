@@ -32,7 +32,7 @@ def testThisXcForm(testXcForm, XcForm):
 
             numberOfX = int(string)
 
-            numberOfW = 2*numberOfX + 1
+            numberOfW = 2*numberOfX
 
             for i in range(numberOfW):
                 testXcForm.append("w")

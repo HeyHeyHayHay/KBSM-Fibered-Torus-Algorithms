@@ -52,7 +52,7 @@ testXcForm2 = [c, "k", "w"]
 
 word99 = Word((0, 4, 0, 4, 0, 4, 0, 4, 1, 4, 2), 1)
 word100 = Word((0, 4, 0, 4, 1, 4, 0), 1)
-word101 = Word((0, 4, 0, 4, 2, 5, 0), 1)
+word101 = Word((0, 4, 0, 4, 2, 5, 0, 5, 0), 1)
 
 
 t = LinearCombination([word100, word101])
@@ -94,10 +94,18 @@ basis2Transfer = algorithmGeneral(c, 2, basisTransferAlgorithmTest2, basis1Trans
 
 print(basis2Transfer)
 
-print("____TRANSFeR 2_____")
+print("____TRANSFeR 3_____")
 
 basisTransferAlgorithmTest3 = basisConversionAlgorithm.createBasisAlgorithm(3)
 
 basis3Transfer = algorithmGeneral(c, 3, basisTransferAlgorithmTest3, basis2Transfer)
 
 print(basis3Transfer)
+
+print("____TRANSFeR 3_____")
+
+basisTransferAlgorithmTest4 = basisConversionAlgorithm.createBasisAlgorithm(4)
+
+basis4Transfer = algorithmGeneral(c, 4, basisTransferAlgorithmTest4, basis3Transfer)
+
+print(basis4Transfer)
