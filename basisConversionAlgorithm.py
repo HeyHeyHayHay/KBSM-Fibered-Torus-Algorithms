@@ -50,8 +50,7 @@ def createBasisAlgorithm(destinationBasisNumber):
         return algorithmMatchAndMove(c, word, moves.xRightPlus, formPart3, 3)
 
     def part4(c, word):
-        print(4)
-
+        #print(4)
 
         formPart4 = [c, "k", 0, c, "n", c, 0, f"{destinationBasisNumber - 1}w"]
         return algorithmMatchAndMove(c, word, moves.lambdaReduce3, formPart4, 4)
@@ -59,7 +58,7 @@ def createBasisAlgorithm(destinationBasisNumber):
     # _____________________________________________________________
 
     def part5(c, word):
-        print(5)
+        #print(5)
 
         formPart5 = [c, "k", 0, "m", "n >= 1", c + 1, "w"]
         return algorithmMatchAndMove(c, word, moves.lambdaRightMinus, formPart5, 4)
@@ -67,13 +66,13 @@ def createBasisAlgorithm(destinationBasisNumber):
     def part6(c, word):
         #print(6)
 
-        formPart6 = [c, "k", 0, "m > c + 1", 0, c + 1, "w"]
+        formPart6 = [c, "k", "n", "m > c + 1", 0, c + 1, "w"]
         return algorithmMatchAndMove(c, word, moves.xRightMinus, formPart6, 3)
 
     def part7(c, word):
         #print(7)
 
-        formPart7 = [c, "k", 0, "m < c", 0, c + 1, "w"]
+        formPart7 = [c, "k", "n", "m < c", 0, c + 1, "w"]
         return algorithmMatchAndMove(c, word, moves.xRightPlus, formPart7, 3)
 
     def part8(c, word):

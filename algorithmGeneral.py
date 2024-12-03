@@ -31,7 +31,7 @@ def algorithmGeneral(c, basisNumber, algorithmFunction, linearCombination):
             currentWord = Word(word, linearCombination.wordDict[word])
 
             changes = algorithmFunction(c, currentWord)
-            print("start:", currentWord, "change:", changes)
+            #print("start:", currentWord, "\n", "change:", changes)
             newLinearCombination.addLinearCombination(changes)
 
         length = len(linearCombination)
@@ -40,8 +40,8 @@ def algorithmGeneral(c, basisNumber, algorithmFunction, linearCombination):
         linearCombination = LinearCombination([])
         linearCombination.addLinearCombination(newLinearCombination)
 
-        print("Next Step")
-        if (i%1 == 0):
+        #print("Next Step")
+        if (i%100 == 0):
             print(" Step {} Length {} Basis Words {} \n{} Step {} Length {} Basis Words {} \n".format(i, length, basisWords, linearCombination, i, length, basisWords))
 
         i += 1

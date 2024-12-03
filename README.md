@@ -1,4 +1,4 @@
-"# KBSM Fibered Torus Algorithms"
+"# KBSM A^2 x S^1 Algorithms"
 
 Improvements:
 

@@ -38,7 +38,10 @@ class Word:
                 if (i%2 == 1):
                     wordString = fp.fancy_x_unicode + fp.to_subscript(array[i]) + wordString
 
-        return f"{Fore.RED}({self.coefficient}) {Fore.WHITE}{wordString}"
+        #factor coefficient
+        #self.coefficient = sympy.factor(self.coefficient)
+
+        return f"{Fore.GREEN}({self.coefficient}) {Fore.BLACK}{wordString}"
 
     def numOfXCurves(self):
         return math.floor( len(self.letterTuple) / 2 )

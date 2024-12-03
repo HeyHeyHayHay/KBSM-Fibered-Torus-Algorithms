@@ -51,12 +51,12 @@ testXcForm1 = [c, "k", "m >= -4", 4, 0, 5, 0]
 testXcForm2 = [c, "k", "w"]
 
 word99 = Word((0, 4, 0, 4, 0, 4, 0, 4, 1, 4, 2), 1)
-word100 = Word((0, 4, 0, 4, 1, 4, 0), 1)
+word100 = Word((0, 4, 1, 4, 0, 5, 0, 5, 0, 5, 0), A)
 word101 = Word((0, 4, 0, 4, 2, 5, 0, 5, 0), 1)
 
 
-t = LinearCombination([word100, word101])
-testCombination = LinearCombination([word100, word101])
+t = LinearCombination([word100])
+testCombination = LinearCombination([word100])
 print("_________________")
 
 print(testCombination)
@@ -64,12 +64,12 @@ print(testCombination)
 
 
 basis0test = algorithmGeneral(c, 0, algorithm0.algorithm0, testCombination)
-testCombination = LinearCombination([word100, word101])
+testCombination = LinearCombination([word100])
 
 basis1Direct = algorithmGeneral(c, 1, algorithm1.algorithm1, testCombination)
 
-print("basis0", basis0test)
-print("basis1", basis1Direct)
+print("Basis 0 \n", basis0test)
+#print("Basis 1", basis1Direct)
 
 print("____TRANSFeR_____")
 
@@ -102,10 +102,18 @@ basis3Transfer = algorithmGeneral(c, 3, basisTransferAlgorithmTest3, basis2Trans
 
 print(basis3Transfer)
 
-print("____TRANSFeR 3_____")
+print("____TRANSFeR 4_____")
 
 basisTransferAlgorithmTest4 = basisConversionAlgorithm.createBasisAlgorithm(4)
 
 basis4Transfer = algorithmGeneral(c, 4, basisTransferAlgorithmTest4, basis3Transfer)
 
 print(basis4Transfer)
+
+print("____TRANSFeR 5_____")
+
+basisTransferAlgorithmTest5 = basisConversionAlgorithm.createBasisAlgorithm(5)
+
+basis5Transfer = algorithmGeneral(c, 5, basisTransferAlgorithmTest5, basis4Transfer)
+
+print(basis5Transfer)
