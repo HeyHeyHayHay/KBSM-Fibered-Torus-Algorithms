@@ -50,7 +50,7 @@ def part4(c, word):
 
     formPart4 = [c, "k", 0, c + 1, "n", "m", "w", "w", "w"]
 
-    return algorithmMatchAndMove(c, word, moves.lambdaReduce3, formPart4, 4)
+    return algorithmMatchAndMove(c, word, moves.lambdaReducePlus, formPart4, 4)
 
 "______________________________________________________________"
 
@@ -78,7 +78,7 @@ def part8(c, word):
 
     formPart8 = [c, "k", "n", "m", "n", c, 0]
 
-    return algorithmMatchAndMove(c, word, moves.lambdaReduce3, formPart8, 4)
+    return algorithmMatchAndMove(c, word, moves.lambdaReducePlus, formPart8, 4)
 
 "______________________________________________________________"
 

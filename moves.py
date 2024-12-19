@@ -148,7 +148,7 @@ def xLeftMinus(XcForm, indexToChange, startCoefficient):
 
     return linearCombination
 
-def lambdaReduce3(XcForm, indexToChange, startCoefficient):
+def lambdaReducePlus(XcForm, indexToChange, startCoefficient):
 
     n = XcForm[indexToChange]
     mPlus = XcForm[indexToChange + 1]
@@ -194,6 +194,61 @@ def lambdaReduce3(XcForm, indexToChange, startCoefficient):
     thirdXcForm[indexToChange - 1] = thirdXcForm[indexToChange - 1] - 1
 
     thirdCoefficient = sympy.expand((A**-2)*startCoefficient)
+
+    thirdWord = XcFormToWord(thirdXcForm, thirdCoefficient)
+
+    linearCombination = firstLinearCombination.addLinearCombination(secondLinearCombination.addWord(thirdWord))
+
+    #print("move4", XcForm, firstXcForm, secondXcForm, thirdXcForm)
+
+    return linearCombination
+
+def lambdaReduceMinus(XcForm, indexToChange, startCoefficient):
+
+    n = XcForm[indexToChange]
+    mInner = XcForm[indexToChange + 1]
+    mOuter = XcForm[indexToChange - 1]
+
+    firstXcForm = list(XcForm)
+    secondXcForm = list(XcForm)
+    thirdXcForm = list(XcForm)
+
+    # First Word
+
+    firstXcForm.pop(indexToChange + 1)
+    centerLambda = firstXcForm.pop(indexToChange)
+    rightLambda = firstXcForm.pop(indexToChange)
+
+    newLambda = centerLambda + rightLambda + 1
+    firstXcForm[indexToChange - 2] = newLambda
+
+    firstXcForm.pop(indexToChange - 1)
+
+    firstCoefficient = sympy.expand((-A**1)*startCoefficient)
+
+    firstLinearCombination = polyPQ.Pnk_Recursion(mOuter - mInner + 1, n, firstXcForm, indexToChange - 2, firstCoefficient)
+
+    # Second Word
+
+    secondXcForm.pop(indexToChange + 1)
+    centerLambda = secondXcForm.pop(indexToChange)
+    rightLambda = secondXcForm.pop(indexToChange)
+
+    newLambda = centerLambda + rightLambda
+    secondXcForm[indexToChange - 2] = newLambda
+
+    secondXcForm.pop(indexToChange - 1)
+
+    secondCoefficient = sympy.expand(2*startCoefficient)
+
+    secondLinearCombination = polyPQ.Pnk_Recursion(mOuter - mInner + 2, n, secondXcForm, indexToChange - 2, secondCoefficient)
+
+    # Third Word
+
+    thirdXcForm[indexToChange + 1] = thirdXcForm[indexToChange + 1] - 1
+    thirdXcForm[indexToChange - 1] = thirdXcForm[indexToChange - 1] + 1
+
+    thirdCoefficient = sympy.expand((A**2)*startCoefficient)
 
     thirdWord = XcFormToWord(thirdXcForm, thirdCoefficient)
 

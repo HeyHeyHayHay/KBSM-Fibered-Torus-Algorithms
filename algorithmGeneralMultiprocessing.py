@@ -10,7 +10,7 @@ from dataStructures import XcFormToWord
 import sympy
 import basisClassification
 import comparingWords
-import algorithm0
+import algorithm0Plus
 import algorithm1
 from algorithmGeneral import algorithmGeneral
 import polyPQ
@@ -72,7 +72,7 @@ def main():
     word1 = Word((0, 4, 0, 4, 0, 4, 0, 2, 1, -1, 4, 0, 0, 0, 0, 0), A**2 - A**-1)
     testCombination = LinearCombination([word1])
 
-    result = algorithmGeneralMP(4, 0, algorithm0.algorithm0, testCombination)
+    result = algorithmGeneralMP(4, 0, algorithm0Plus.algorithm0Plus, testCombination)
     print(result)
 
 if __name__ == '__main__':

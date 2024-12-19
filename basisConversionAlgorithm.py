@@ -53,7 +53,7 @@ def createBasisAlgorithm(destinationBasisNumber):
         #print(4)
 
         formPart4 = [c, "k", 0, c, "n", c, 0, f"{destinationBasisNumber - 1}w"]
-        return algorithmMatchAndMove(c, word, moves.lambdaReduce3, formPart4, 4)
+        return algorithmMatchAndMove(c, word, moves.lambdaReducePlus, formPart4, 4)
 
     # _____________________________________________________________
 

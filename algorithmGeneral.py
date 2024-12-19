@@ -59,7 +59,6 @@ def algorithmGeneral(c, basisNumber, algorithmFunction, linearCombination):
         # if basis add to new linearcombination of basis
         # if not basis add back into linearCombination
 
-
 def algorithmMatchAndMove(c, word, moveFunction, formMatch, position):
 
     XcForm = testWord(formMatch, word)

@@ -12,7 +12,7 @@ lambda_ = sympy.symbols('lambda')
 
 #Lemma 3.3
 
-def algorithm0(c, word):
+def algorithm0Plus(c, word):
 
     listOfPartFunctions = [part1, part2, part3, part4, part5, part6, part7]
 
@@ -46,7 +46,7 @@ def part3(c, word):
 def part4(c, word):
 
     formPart4 = [c, "k", 0, c + 1, "n", "m", "w"]
-    return algorithmMatchAndMove(c, word, moves.lambdaReduce3, formPart4, 4)
+    return algorithmMatchAndMove(c, word, moves.lambdaReducePlus, formPart4, 4)
 
 def part5(c, word):
 

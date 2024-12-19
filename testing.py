@@ -6,7 +6,7 @@ from dataStructures import XcFormToWord
 import sympy
 import basisClassification
 import comparingWords
-import algorithm0
+import algorithm0Plus
 import algorithm1
 import basisConversionAlgorithm
 from basisClassification import isBasis
@@ -44,12 +44,6 @@ word21 = Word((0, 4, 0, 3, 2, 5), 4*A)
 
 combo = LinearCombination([word1, word2, word4, word5, word6, word7, word8, word9, word19, word20, word21, word22, word24, word25, word26])
 
-#basis = basisClassification.isBasis(word4, 0, 4)
-
-c = 4
-testXcForm1 = [c, "k", "m >= -4", 4, 0, 5, 0]
-testXcForm2 = [c, "k", "w"]
-
 word99 = Word((0, 4, 0, 4, 0, 4, 0, 4, 1, 4, 2), 1)
 word100 = Word((0, 4, 1, 4, 0, 5, 0, 5, 0, 5, 0), A)
 word101 = Word((0, 4, 0, 4, 2, 5, 0, 5, 0), 1)
@@ -61,9 +55,18 @@ print("_________________")
 
 print(testCombination)
 
+c = 1
 
+word22 = Word((0,1,0,0,0,1), 1)
+print(word22)
+print(word22.XcCurveForm(c))
+print(moves.lambdaReduceMinus(word22.XcCurveForm(c), 4, word22.coefficient))
 
-basis0test = algorithmGeneral(c, 0, algorithm0.algorithm0, testCombination)
+print("old f")
+print(moves.lambdaReducePlus(word22.XcCurveForm(c), 4, word22.coefficient))
+
+"""
+basis0test = algorithmGeneral(c, 0, algorithm0Plus.algorithm0Plus, testCombination)
 testCombination = LinearCombination([word100])
 
 basis1Direct = algorithmGeneral(c, 1, algorithm1.algorithm1, testCombination)
@@ -77,12 +80,9 @@ basisTransferAlgorithmTest = basisConversionAlgorithm.createBasisAlgorithm(1)
 
 basis1Transfer = algorithmGeneral(c, 1, basisTransferAlgorithmTest, basis0test)
 
-"""
 print(basis0test)
 print(basis1Direct)
 print(basis1Transfer)
-"""
-
 
 print(basis1Transfer)
 
@@ -117,3 +117,4 @@ basisTransferAlgorithmTest5 = basisConversionAlgorithm.createBasisAlgorithm(5)
 basis5Transfer = algorithmGeneral(c, 5, basisTransferAlgorithmTest5, basis4Transfer)
 
 print(basis5Transfer)
+"""
