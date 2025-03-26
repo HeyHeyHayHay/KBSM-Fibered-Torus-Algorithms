@@ -3,14 +3,18 @@ import dataStructures
 from dataStructures import Word
 from dataStructures import LinearCombination
 from dataStructures import XcFormToWord
+from dataStructures import basisInformation
+
 import sympy
 import basisClassification
 import comparingWords
 import algorithm0Plus
-import algorithm1
-import basisConversionAlgorithm
+import algorithm0Minus
+import basisPlusConversionAlgorithm
+import basisMinusConversionAlgorithm
 from basisClassification import isBasis
 import basisClassification
+from toBasis import toBasis
 
 from algorithmGeneral import algorithmGeneral
 import moves
@@ -46,75 +50,26 @@ combo = LinearCombination([word1, word2, word4, word5, word6, word7, word8, word
 
 word99 = Word((0, 4, 0, 4, 0, 4, 0, 4, 1, 4, 2), 1)
 word100 = Word((0, 4, 1, 4, 0, 5, 0, 5, 0, 5, 0), A)
-word101 = Word((0, 4, 0, 4, 2, 5, 0, 5, 0), 1)
+word101 = Word((0, 4, 0, 4, 2, 5, 0), 1)
+word102 = Word((0, 4, 1, 4, 0, 3, 0, 3, 0), A)
 
 
-t = LinearCombination([word100])
-testCombination = LinearCombination([word100])
+t = LinearCombination([word101])
+testCombination = LinearCombination([word102])
 print("_________________")
 
 print(testCombination)
 
 c = 1
+sigmaZeroOneNegative = basisInformation(0, 1, -1)
+sigmaThreeFourPositive = basisInformation(3, 4, 1)
+sigmaThreeFourNegative = basisInformation(3, 4, -1)
 
-word22 = Word((0,1,0,0,0,1), 1)
-print(word22)
-print(word22.XcCurveForm(c))
-print(moves.lambdaReduceMinus(word22.XcCurveForm(c), 4, word22.coefficient))
+print(sigmaThreeFourPositive)
 
-print("old f")
-print(moves.lambdaReducePlus(word22.XcCurveForm(c), 4, word22.coefficient))
+print(basisClassification.isBasis(word100, sigmaThreeFourPositive))
+print(basisClassification.isBasis(word102, sigmaThreeFourNegative))
 
-"""
-basis0test = algorithmGeneral(c, 0, algorithm0Plus.algorithm0Plus, testCombination)
-testCombination = LinearCombination([word100])
+basis0test = algorithmGeneral(basisInformation(0, 4, -1), algorithm0Minus.algorithm0Minus, testCombination)
 
-basis1Direct = algorithmGeneral(c, 1, algorithm1.algorithm1, testCombination)
-
-print("Basis 0 \n", basis0test)
-#print("Basis 1", basis1Direct)
-
-print("____TRANSFeR_____")
-
-basisTransferAlgorithmTest = basisConversionAlgorithm.createBasisAlgorithm(1)
-
-basis1Transfer = algorithmGeneral(c, 1, basisTransferAlgorithmTest, basis0test)
-
-print(basis0test)
-print(basis1Direct)
-print(basis1Transfer)
-
-print(basis1Transfer)
-
-print("____TRANSFeR 2_____")
-
-basisTransferAlgorithmTest2 = basisConversionAlgorithm.createBasisAlgorithm(2)
-
-basis2Transfer = algorithmGeneral(c, 2, basisTransferAlgorithmTest2, basis1Transfer)
-
-print(basis2Transfer)
-
-print("____TRANSFeR 3_____")
-
-basisTransferAlgorithmTest3 = basisConversionAlgorithm.createBasisAlgorithm(3)
-
-basis3Transfer = algorithmGeneral(c, 3, basisTransferAlgorithmTest3, basis2Transfer)
-
-print(basis3Transfer)
-
-print("____TRANSFeR 4_____")
-
-basisTransferAlgorithmTest4 = basisConversionAlgorithm.createBasisAlgorithm(4)
-
-basis4Transfer = algorithmGeneral(c, 4, basisTransferAlgorithmTest4, basis3Transfer)
-
-print(basis4Transfer)
-
-print("____TRANSFeR 5_____")
-
-basisTransferAlgorithmTest5 = basisConversionAlgorithm.createBasisAlgorithm(5)
-
-basis5Transfer = algorithmGeneral(c, 5, basisTransferAlgorithmTest5, basis4Transfer)
-
-print(basis5Transfer)
-"""
+matchTst = toBasis(basisInformation(2, 4, -1), testCombination)

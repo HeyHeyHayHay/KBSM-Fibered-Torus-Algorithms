@@ -193,6 +193,17 @@ class LinearCombination:
         self.removeZeros()
         return self
 
+class basisInformation:
+    def __init__(self, basisNumber, c, plusOrMinus):
+
+        self.basisNumber = basisNumber
+        self.c = c
+        self.plusOrMinus = plusOrMinus
+
+    def __str__(self):
+
+        stats = "basisNumber:" + str(self.basisNumber) + " c:" + str(self.c) + " plusOrMinus:" + str(self.plusOrMinus)
+        return stats
 #
 def XcFormToWord(XcForm, coefficient):
 

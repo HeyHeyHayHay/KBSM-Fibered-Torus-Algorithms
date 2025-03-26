@@ -10,11 +10,11 @@ A = sympy.symbols('A')
 lambda_ = sympy.symbols('lambda')
 
 
-def createBasisAlgorithm(destinationBasisNumber):
+def createBasisPlusAlgorithm(destinationBasisNumber):
 
     #Lemma 3.3
 
-    def basisConversionAlgorithm(c, word):
+    def basisPlusConversionAlgorithm(c, word):
 
         listOfPartFunctions = [part1, part2, part3, part4, part5, part6, part7, part8, part9, part10, part11, part12]
 
@@ -106,4 +106,4 @@ def createBasisAlgorithm(destinationBasisNumber):
         return algorithmMatchAndMove(c, word, moves.xRightPlus, formPart12, 3)
 
 
-    return basisConversionAlgorithm
+    return basisPlusConversionAlgorithm

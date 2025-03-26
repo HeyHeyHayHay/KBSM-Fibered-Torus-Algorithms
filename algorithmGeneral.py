@@ -7,8 +7,9 @@ import sympy
 import moves
 
 
-def algorithmGeneral(c, basisNumber, algorithmFunction, linearCombination):
-
+def algorithmGeneral(basisInformation, algorithmFunction, linearCombination):
+    c = basisInformation.c
+        
     basisCombination = LinearCombination([])
 
     i = 1
@@ -19,7 +20,7 @@ def algorithmGeneral(c, basisNumber, algorithmFunction, linearCombination):
         for word in linearCombination:
             currentWord = Word(word, linearCombination.wordDict[word])
 
-            if (isBasis(currentWord, basisNumber, c) == True):
+            if (isBasis(currentWord, basisInformation) == True):
                 basisCombination.addWord(currentWord)
                 combinationToSubract.addWord(currentWord)
 
