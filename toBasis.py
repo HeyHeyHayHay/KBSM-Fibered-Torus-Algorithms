@@ -13,18 +13,20 @@ def toBasis(basisInformation, linearCombination):
     basisNumber = basisInformation.basisNumber
     plusOrMinus = basisInformation.plusOrMinus
 
+    #print(dataStructures.basisInformation(0, c, plusOrMinus))
+
     if (plusOrMinus == 1):
         basisCombination = algorithmGeneral(dataStructures.basisInformation(0, c, plusOrMinus), algorithm0Plus, linearCombination)
 
     if (plusOrMinus == -1):
         basisCombination = algorithmGeneral(dataStructures.basisInformation(0, c, plusOrMinus), algorithm0Minus, linearCombination)
 
-    print(basisCombination)
+    #print(basisCombination)
 
     for step in range(basisNumber):
         nextBasisNumber = step + 1
         nextBasisInformation = dataStructures.basisInformation(nextBasisNumber, c, plusOrMinus)
-        print(nextBasisInformation)
+        #print(nextBasisInformation)
 
         if (plusOrMinus == 1):
             transferAlgorithm = createBasisPlusAlgorithm(nextBasisNumber)
@@ -33,7 +35,7 @@ def toBasis(basisInformation, linearCombination):
 
         basisCombination = algorithmGeneral(nextBasisInformation, transferAlgorithm, basisCombination)
 
-        print(basisCombination)
+        #print(basisCombination)
 
     finalBasisCombination = basisCombination
 

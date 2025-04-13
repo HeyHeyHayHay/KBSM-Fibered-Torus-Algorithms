@@ -43,6 +43,32 @@ class Word:
 
         return f"{Fore.GREEN}({self.coefficient}) {Fore.BLACK}{wordString}"
 
+    def strLatex(self):
+
+        array = self.letterTuple
+
+        wordString = ""
+
+        if ( type(array) == int ):
+            wordString = "\lambda^{" + str(array) + "}" + wordString
+        else:
+            for i in range(len(array)):
+                if (i%2 == 0):
+                    if (array[i] != 0):
+                        wordString = "\lambda^{" + str(array[i]) + "}" + wordString
+                if (i%2 == 1):
+                    wordString = "x_{" + str(array[i]) + "}" + wordString
+
+        coefficientLatex = sympy.latex(self.coefficient)
+
+        if self.coefficient == 1:
+            return wordString
+            # Handle negative coefficients
+        elif self.coefficient == -1:
+            return f"-{wordString}"
+        else:
+            return f"{coefficientLatex} {wordString}"
+
     def numOfXCurves(self):
         return math.floor( len(self.letterTuple) / 2 )
 
@@ -149,6 +175,24 @@ class LinearCombination:
 
     def __len__(self):
         return len(self.wordDict)
+
+    def strLatex(self):
+
+        linearCombinationString = ""
+        wordList = (self.wordDict).items()
+
+        i = 0
+        for word in self.wordDict:
+            currentWord = Word(word, self.wordDict[word])
+            if (i == 0):
+                linearCombinationString = linearCombinationString + "   " + Word.strLatex(currentWord)
+            else:
+                linearCombinationString = linearCombinationString + " + " + Word.strLatex(currentWord)
+            linearCombinationString += "\n"
+            i += 1
+
+        return linearCombinationString
+
 
     def removeZeros(self):
         wordsWithZeroCoefficient = []
