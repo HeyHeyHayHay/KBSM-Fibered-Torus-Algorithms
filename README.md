@@ -3,5 +3,3 @@
 Improvements:
 
 Proper stack control in algorithmGeneral
-
-Parallelization in algorithmGeneral
