@@ -1,5 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
+from tkinter import font
+
 
 from backend.latexToLinearCombination import laTeXToLinearCombination
 import backend.dataStructures
@@ -33,41 +35,81 @@ def copyToClipboard():
     root.clipboard_append(outputEntry.get("1.0", tk.END).strip())
     root.update()
 
-# Main window
+# Main window setup with improved appearance
 root = tk.Tk()
 root.title("KBSM Basis Converter")
+root.configure(padx=20, pady=20)  # Add padding around all elements
 
-# LaTeX Input
-tk.Label(root, text="Enter LaTeX Input:").grid(row=0, column=0, sticky="w")
-latexEntry = tk.Text(root, height=2, width=40)
-latexEntry.grid(row=1, column=0, columnspan=2)
+# Make the root window resizable
+root.columnconfigure(0, weight=1)
+root.rowconfigure(0, weight=1)
 
-# Basis Selection
-tk.Label(root, text="Select Basis:").grid(row=2, column=0, sticky="w")
+# Create a custom style
+style = ttk.Style()
+style.configure("TButton", padding=6, relief="flat")
+style.configure("TLabel", padding=5)
+style.configure("TFrame", padding=10)
+
+# Create main frame to hold everything
+main_frame = ttk.Frame(root, padding="10")
+main_frame.grid(row=0, column=0, sticky="nsew")
+
+# Configure main frame to expand
+main_frame.columnconfigure(0, weight=1)
+main_frame.rowconfigure(3, weight=1)  # Let the output section expand
+
+# Define a better font
+default_font = font.nametofont("TkDefaultFont")
+default_font.configure(size=10)
+root.option_add("*Font", default_font)
+
+# Input Section with frame
+input_frame = ttk.LabelFrame(main_frame, text="Input", padding=10)
+input_frame.grid(row=0, column=0, sticky="nsew", pady=(0, 15))
+input_frame.columnconfigure(0, weight=1)  # Make input expand horizontally
+
+ttk.Label(input_frame, text="Enter LaTeX Input:").grid(row=0, column=0, sticky="w", pady=(0, 5))
+latexEntry = tk.Text(input_frame, height=3, width=50, relief="solid", borderwidth=1)
+latexEntry.grid(row=1, column=0, columnspan=3, pady=(0, 10), padx=5, sticky="nsew")
+
+# Parameters Section
+params_frame = ttk.LabelFrame(main_frame, text="Parameters", padding=10)
+params_frame.grid(row=1, column=0, sticky="nsew", pady=(0, 15))
+
+# Basis selection
+ttk.Label(params_frame, text="Select Basis:").grid(row=0, column=0, sticky="w", padx=(0, 10))
 basisNumberVar = tk.IntVar(value=0)
-basisNumberEntry = tk.Entry(root, textvariable=basisNumberVar, width=5)
-basisNumberEntry.grid(row=2, column=1, sticky="w")
-
-tk.Label(root, text="Select c:").grid(row=3, column=0, sticky="w")  # Changed row to 3
-cVar = tk.IntVar(value=0)
-cEntry = tk.Entry(root, textvariable=cVar, width=5)
-cEntry.grid(row=3, column=1, sticky="w")
+basisNumberEntry = ttk.Entry(params_frame, textvariable=basisNumberVar, width=8)
+basisNumberEntry.grid(row=0, column=1, sticky="w", padx=5)
 
 basisSignVar = tk.StringVar(value="+")
-basisSignDropdown = ttk.Combobox(root, textvariable=basisSignVar, values=["+", "-"], width=3)
-basisSignDropdown.grid(row=2, column=2)
+basisSignDropdown = ttk.Combobox(params_frame, textvariable=basisSignVar, values=["+", "-"], width=5)
+basisSignDropdown.grid(row=0, column=2, padx=5)
 
-# Process Button
-processButton = tk.Button(root, text="Convert", command=processInput)
-processButton.grid(row=4, column=0, columnspan=2, pady=5)
+# c value selection
+ttk.Label(params_frame, text="Select c:").grid(row=1, column=0, sticky="w", padx=(0, 10), pady=(10, 0))
+cVar = tk.IntVar(value=0)
+cEntry = ttk.Entry(params_frame, textvariable=cVar, width=8)
+cEntry.grid(row=1, column=1, sticky="w", padx=5, pady=(10, 0))
 
-# Output Display
-tk.Label(root, text="LaTeX Output:").grid(row=5, column=0, sticky="w")  # Changed from 4 to 5
-outputEntry = tk.Text(root, height=2, width=40)
-outputEntry.grid(row=6, column=0, columnspan=2)  # Changed from 5 to 6
+# Action buttons in their own frame
+button_frame = ttk.Frame(main_frame)
+button_frame.grid(row=2, column=0, sticky="nsew", pady=(0, 15))
 
-# Copy Button
-copyButton = tk.Button(root, text="Copy to Clipboard", command=copyToClipboard)
-copyButton.grid(row=7, column=0, columnspan=2, pady=5)  # Changed from 6 to 7
+processButton = ttk.Button(button_frame, text="Convert", command=processInput)
+processButton.grid(row=0, column=0, padx=10)
 
+# Output Section
+output_frame = ttk.LabelFrame(main_frame, text="Output", padding=10)
+output_frame.grid(row=3, column=0, sticky="nsew", pady=(0, 15))
+output_frame.columnconfigure(0, weight=1)  # Make output expand horizontally
+
+ttk.Label(output_frame, text="LaTeX Output:").grid(row=0, column=0, sticky="w", pady=(0, 5))
+outputEntry = tk.Text(output_frame, height=3, width=50, relief="solid", borderwidth=1)
+outputEntry.grid(row=1, column=0, columnspan=3, pady=(0, 10), padx=5, sticky="nsew")
+
+copyButton = ttk.Button(output_frame, text="Copy to Clipboard", command=copyToClipboard)
+copyButton.grid(row=2, column=0, pady=(0, 5))
+
+# Start the application
 root.mainloop()
