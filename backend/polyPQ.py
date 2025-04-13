@@ -1,7 +1,7 @@
 
 import sympy
-from dataStructures import XcFormToWord
-from dataStructures import LinearCombination
+from .dataStructures import XcFormToWord
+from .dataStructures import LinearCombination
 
 A = sympy.symbols('A')
 lambda_ = sympy.symbols('lambda')

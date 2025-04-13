@@ -1,8 +1,8 @@
 
-from dataStructures import XcFormToWord
-from dataStructures import LinearCombination
+from .dataStructures import XcFormToWord
+from .dataStructures import LinearCombination
 
-import polyPQ
+from . import polyPQ
 import sympy
 
 

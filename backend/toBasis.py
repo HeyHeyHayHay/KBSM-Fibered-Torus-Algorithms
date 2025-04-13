@@ -1,11 +1,11 @@
 
-from basisPlusConversionAlgorithm import createBasisPlusAlgorithm
-from basisMinusConversionAlgorithm import createBasisMinusAlgorithm
-from algorithm0Plus import algorithm0Plus
-from algorithm0Minus import algorithm0Minus
-from algorithmGeneral import algorithmGeneral
+from .basisPlusConversionAlgorithm import createBasisPlusAlgorithm
+from .basisMinusConversionAlgorithm import createBasisMinusAlgorithm
+from .algorithm0Plus import algorithm0Plus
+from .algorithm0Minus import algorithm0Minus
+from .algorithmGeneral import algorithmGeneral
 
-import dataStructures
+from . import dataStructures
 
 
 def toBasis(basisInformation, linearCombination):

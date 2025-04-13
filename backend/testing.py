@@ -1,9 +1,9 @@
 
-import dataStructures
-from dataStructures import Word
-from dataStructures import LinearCombination
-from dataStructures import XcFormToWord
-from dataStructures import basisInformation
+from . import dataStructures
+from .dataStructures import Word
+from .dataStructures import LinearCombination
+from .dataStructures import XcFormToWord
+from .dataStructures import basisInformation
 
 import sympy
 import basisClassification

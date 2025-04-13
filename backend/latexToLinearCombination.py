@@ -1,6 +1,6 @@
 
 import re
-import dataStructures
+from . import dataStructures
 from collections import defaultdict
 import sympy
 

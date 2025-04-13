@@ -1,5 +1,5 @@
 
-from comparingWords import testThisXcForm
+from .comparingWords import testThisXcForm
 
 def isBasis(word, basisInformation):
 

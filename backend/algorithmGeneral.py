@@ -1,15 +1,15 @@
 
-from dataStructures import LinearCombination
-from dataStructures import Word
-from basisClassification import isBasis
-from comparingWords import testWord
+from .dataStructures import LinearCombination
+from .dataStructures import Word
+from .basisClassification import isBasis
+from .comparingWords import testWord
 import sympy
-import moves
+from . import moves
 
 
 def algorithmGeneral(basisInformation, algorithmFunction, linearCombination):
     c = basisInformation.c
-        
+
     basisCombination = LinearCombination([])
 
     i = 1

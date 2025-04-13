@@ -1,5 +1,5 @@
 
-import dataStructures
+from . import dataStructures
 
 def testWord(testXcForm, word):
     if (type(testXcForm[0]) == str):

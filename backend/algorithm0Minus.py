@@ -1,10 +1,10 @@
 
-from comparingWords import testWord
-from dataStructures import XcFormToWord
-from dataStructures import LinearCombination
+from .comparingWords import testWord
+from .dataStructures import XcFormToWord
+from .dataStructures import LinearCombination
 import sympy
-import moves
-from algorithmGeneral import algorithmMatchAndMove
+from . import moves
+from .algorithmGeneral import algorithmMatchAndMove
 
 A = sympy.symbols('A')
 lambda_ = sympy.symbols('lambda')

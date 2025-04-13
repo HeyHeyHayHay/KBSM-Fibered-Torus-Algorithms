@@ -1,6 +1,6 @@
 
 import sympy
-import fancyPrinting as fp
+from . import fancyPrinting as fp
 from colorama import Fore, Style, init
 import math
 

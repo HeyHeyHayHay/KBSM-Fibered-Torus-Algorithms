@@ -1,9 +1,9 @@
 import tkinter as tk
 from tkinter import ttk
 
-from latexToLinearCombination import laTeXToLinearCombination
-import dataStructures
-from toBasis import toBasis
+from backend.latexToLinearCombination import laTeXToLinearCombination
+import backend.dataStructures
+from backend.toBasis import toBasis
 
 def processInput():
     latexInput = latexEntry.get("1.0", tk.END).strip()
@@ -17,15 +17,13 @@ def processInput():
         basisSign = -1
     # algorithm
 
-    basisInfo = dataStructures.basisInformation(basisNumber, c_value, basisSign)
-    print(basisInfo)
+    basisInfo = backend.dataStructures.basisInformation(basisNumber, c_value, basisSign)
 
     linearCombination = laTeXToLinearCombination(latexInput)
 
     outputLinearCombination = toBasis(basisInfo, linearCombination)
 
-    outputText = dataStructures.LinearCombination.strLatex(outputLinearCombination)
-    print(outputText)
+    outputText = backend.dataStructures.LinearCombination.strLatex(outputLinearCombination)
 
     outputEntry.delete("1.0", tk.END)
     outputEntry.insert("1.0", outputText)
