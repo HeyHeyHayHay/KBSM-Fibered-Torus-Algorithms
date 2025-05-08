@@ -1,12 +1,24 @@
-"# KBSM A^2 x S^1 Algorithms"
+# KBSM \( A^2 \times S^1 \) Algorithms
 
-Graphic User Interface
-Run kbsmA2xS1GUI.py
-Input LaTeX for Generator
-Input desired basis information: Basis Number, c, and + or -
+## Graphic User Interface
 
-Output LaTeX linear combination of basis elements
+To launch the GUI, run:
 
-Improvements:
+```
+python kbsmA2xS1GUI.py
+```
 
-Proper stack control in algorithmGeneral
+### Input
+- LaTeX representation of a generator
+- Desired basis information:
+  - **Basis Number**
+  - **c**
+  - **Sign** (+ or -)
+
+### Output
+- A LaTeX-formatted linear combination of basis elements
+
+---
+
+## Improvements
+- Add proper stack control in `algorithmGeneral`

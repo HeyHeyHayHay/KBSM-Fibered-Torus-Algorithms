@@ -67,7 +67,7 @@ class Word:
         elif self.coefficient == -1:
             return f"-{wordString}"
         else:
-            return f"{coefficientLatex} {wordString}"
+            return f"({coefficientLatex}) {wordString}"
 
     def numOfXCurves(self):
         return math.floor( len(self.letterTuple) / 2 )
@@ -188,7 +188,7 @@ class LinearCombination:
                 linearCombinationString = linearCombinationString + "   " + Word.strLatex(currentWord)
             else:
                 linearCombinationString = linearCombinationString + " + " + Word.strLatex(currentWord)
-            linearCombinationString += "\n"
+            #linearCombinationString += "\n"
             i += 1
 
         return linearCombinationString

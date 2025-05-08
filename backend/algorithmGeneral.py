@@ -17,13 +17,14 @@ def algorithmGeneral(basisInformation, algorithmFunction, linearCombination):
     while (len(linearCombination) > 0):
 
         combinationToSubract = LinearCombination([])
+        ##
         for word in linearCombination:
             currentWord = Word(word, linearCombination.wordDict[word])
 
             if (isBasis(currentWord, basisInformation) == True):
                 basisCombination.addWord(currentWord)
                 combinationToSubract.addWord(currentWord)
-
+        ##
         linearCombination.subtractLinearCombination(combinationToSubract)
 
         newLinearCombination = LinearCombination([])
